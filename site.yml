@@ -5,7 +5,7 @@
 - hosts: all
   sudo: yes
   roles:
-    - common
+    - sysctl
 
 - hosts: cluster-nodes
   roles:
