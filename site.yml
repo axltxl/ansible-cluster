@@ -3,6 +3,7 @@
 
 # Apply common configuration to all hosts
 - hosts: all
+  sudo: yes
   roles:
     - common
 

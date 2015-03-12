@@ -1,0 +1,19 @@
+#
+# This project is configured through a series of configuration
+# options (global ruby variables) which are detailed below. To modify
+# these options, first copy this file to "config.rb". Then simply
+# uncomment the necessary lines, leaving the $, and replace everything
+# after the equals sign..
+
+# Size of the CoreOS cluster created by Vagrant
+#$num_instances=1
+
+# Change basename of the VM
+# The default value is "core", which results in VMs named starting with
+# "core-01" through to "core-${num_instances}".
+#$instance_name_prefix="ansible"
+
+# Customize VMs
+#$vm_gui = false
+#$vm_memory = 1024
+#$vm_cpus = 1
