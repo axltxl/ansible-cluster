@@ -1,0 +1,13 @@
+---
+# This playbook deploys the whole application stack in this site.  
+
+# Apply common configuration to all hosts
+- hosts: all
+  roles:
+    - common
+
+- hosts: cluster-nodes
+  roles:
+    - docker
+  post_tasks:
+    - shell: echo 'goodbye'
