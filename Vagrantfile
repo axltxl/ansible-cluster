@@ -10,12 +10,12 @@ $num_instances = 1
 $vm_gui = false
 $vm_memory = 1024
 $vm_cpus = 1
-$vm_box = "centos-6/amd64"
+$vm_box = "centos-6-amd64"
 
 #
 $vm_boxes = {
-  "ubuntu/trusty64" => "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box",
-  "centos-6/amd64"  => "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box"
+  "ubuntu-trusty-amd64" => "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box",
+  "centos-6-amd64"      => "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box"
 }
 
 INSTANCE_NAME_PREFIX = "hans"
