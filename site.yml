@@ -1,5 +1,5 @@
 ---
-# This playbook deploys the whole application stack in this site.  
+# This playbook deploys the whole application stack in this site.
 
 # Apply common configuration to all hosts
 - hosts: all
@@ -8,7 +8,10 @@
     - sysctl
 
 - hosts: cluster-nodes
-  roles:
-    - docker
   post_tasks:
     - shell: echo 'goodbye'
+
+#- hosts: coreos
+#  gather_facts: False
+#  roles:
+#    - defunctzombie.coreos-bootstrap
