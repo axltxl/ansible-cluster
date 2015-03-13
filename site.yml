@@ -6,6 +6,8 @@
   sudo: yes
   roles:
     - sysctl
+    - users
+    - ssh
 
 - hosts: cluster-nodes
   post_tasks:
