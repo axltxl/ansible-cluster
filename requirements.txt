@@ -1,0 +1,2 @@
+franklinkim.sudo,1.0.0
+defunctzombie.coreos-bootstrap
