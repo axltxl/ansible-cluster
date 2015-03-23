@@ -1,0 +1,4 @@
+---
+# Defaults for franklinkim.sudo
+sudo_users:
+  - {name: '%sysadmins', nopasswd: yes}

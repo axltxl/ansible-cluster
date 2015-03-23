@@ -4,10 +4,13 @@
 # Apply common configuration to all hosts
 - hosts: all
   sudo: yes
+  vars_files:
+    - vars/defaults.yml
   roles:
     - sysctl
     - users
     - ssh
+    - franklinkim.sudo
 
 - hosts: cluster-nodes
   post_tasks:
