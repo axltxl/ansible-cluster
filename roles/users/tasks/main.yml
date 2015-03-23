@@ -14,5 +14,5 @@
 # sys_users:
 #  - { name: alejandro, group: mygroup, shell: /bin/fish }
 - name: Set up users
-  user: name={{ item.name }} group={{ item.group }} state=present shell={{ item.shell | default('/bin/bash') }}
+  user: name={{ item.name }} group={{ item.group }} state={{ item.state | default('present') }} shell={{ item.shell | default('/bin/bash') }}
   with_items: sys_users
