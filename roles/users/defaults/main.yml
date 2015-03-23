@@ -1,5 +1,7 @@
 ---
-groups_params:
+# System groups
+sys_groups:
   - { name: sysadmins }
 
-users_params: []
+# System users
+sys_users: []
