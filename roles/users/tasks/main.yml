@@ -16,3 +16,8 @@
 - name: Set up users
   user: name={{ item.name }} group={{ item.group }} state={{ item.state | default('present') }} shell={{ item.shell | default('/bin/bash') }}
   with_items: sys_users
+
+
+- name: Clean up default users
+  user: name={{ item }} state=absent
+  with_items: sys_users_default
