@@ -7,10 +7,10 @@
   vars_files:
     - vars/defaults.yml
   roles:
-    - sysctl
     - users
-    - ssh
+    - sysctl
     - franklinkim.sudo
+    - ssh_keys
 
 - hosts: cluster-nodes
   post_tasks:
