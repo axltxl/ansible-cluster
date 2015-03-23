@@ -1,17 +1,28 @@
-Ansible playbooks
------------------
+#Ansible playbooks
 
-#Requirements
+
+##Requirements
 * python
 * ruby
 * ansible
 * vagrant
 
-# Set up
+## Set up
 
-  gem install vagrant
-  pip install ansible
+```bash
+# Get vagrant and ansible
+gem install vagrant
+pip install ansible
 
-# Spin it!
+# Install third-party dependencies
+ansible-galaxy install -r requirements.txt
+```
 
-  vagrant up
+## Vagrant environment configuration
+[coming soon]
+
+## Release The Kraken!
+
+```bash
+vagrant up
+```
