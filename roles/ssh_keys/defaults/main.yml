@@ -1,2 +1,2 @@
 ---
-ssh_users: []
+ssh_authorized_keys: []
