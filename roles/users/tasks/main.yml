@@ -1,0 +1,23 @@
+---
+# ---------------------------
+# System-wide user settings
+# ---------------------------
+
+# Example:
+# sys_groups:
+#   - { name: mygroup }
+- name: Set up groups
+  group: name={{ item.name }} state=present
+  with_items: sys_groups
+
+# Example:
+# sys_users:
+#  - { name: alejandro, group: mygroup, shell: /bin/fish }
+- name: Set up users
+  user: name={{ item.name }} group={{ item.group }} state={{ item.state | default('present') }} shell={{ item.shell | default('/bin/bash') }}
+  with_items: sys_users
+
+
+- name: Clean up default users
+  user: name={{ item }} state=absent
+  with_items: sys_users_default

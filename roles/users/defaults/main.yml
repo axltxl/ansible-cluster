@@ -1,0 +1,11 @@
+---
+# System groups
+sys_groups:
+  - { name: sysadmins }
+
+# System users
+sys_users: []
+sys_users_default:
+  - ubuntu # Ubuntu Server
+  - core # CoreOS
+  - ec2-user # Amazon Linux

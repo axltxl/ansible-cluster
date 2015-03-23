@@ -1,0 +1,15 @@
+---
+# ---------------------------
+# SSH settings
+# ---------------------------
+# This role sets up SSH server settings
+# and authorized keys per user as well
+
+# Example use:
+# ssh_authorized_keys:
+#   - {user: willy, key: '$1$2$sadjakl23'}
+#   - {user: willy, key: '$1$2$89hGBDFa'}
+#   - {user: alf,   key: '$1$2sdfbG234t'}
+- name: Set up authorized SSH keys for each user
+  authorized_key: user={{ item.user }} key="{{ item.ssh_key }}" manage_dir=yes state=present
+  with_items: ssh_authorized_keys

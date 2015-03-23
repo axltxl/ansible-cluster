@@ -14,6 +14,7 @@ $vm_memory        = 1024
 $vm_cpus          = 1
 $vm_box           = "ubuntu/trusty64"
 $ansible_playbook = "site.yml"
+$ansible_verbose  = ""
 
 # Available vagrant boxes
 $vm_boxes = {
@@ -57,7 +58,7 @@ Vagrant.configure("2") do |config|
       "cluster-nodes" => [ "#{INSTANCE_NAME_PREFIX}-[%02d:%02d]" % [0,99] ]
     }
     ansible.sudo    = true
-    ansible.verbose = 'vvvv'
+    ansible.verbose = $ansible_verbose
   end
 
   # We're gonna create a number of machines with the same
