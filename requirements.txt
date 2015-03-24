@@ -1,2 +1,2 @@
-franklinkim.sudo,1.0.0
-defunctzombie.coreos-bootstrap
+git+https://github.com/defunctzombie/ansible-coreos-bootstrap.git,master,coreos-bootstrap
+git+https://github.com/weareinteractive/ansible-sudo.git,1.1.0,sudo

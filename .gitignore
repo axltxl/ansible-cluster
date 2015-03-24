@@ -3,3 +3,4 @@
 .vagrant
 .pyenv
 config.rb
+dist
