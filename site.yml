@@ -11,6 +11,7 @@
     - sysctl
     - franklinkim.sudo
     - ssh_keys
+    - essentials
 
 - hosts: cluster-nodes
   post_tasks:
