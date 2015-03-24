@@ -25,7 +25,7 @@ $vm_boxes = {
 
 # This is the prefix used in hostnames
 # for each vagrant boxcarav
-INSTANCE_NAME_PREFIX = "hans"
+INSTANCE_NAME_PREFIX = "ship"
 
 # Import configuration file (if any)
 if File.exist?(CONFIG)
