@@ -9,7 +9,7 @@
   roles:
     - users
     - sysctl
-    - franklinkim.sudo
+    - sudo
     - ssh_keys
     - essentials
 
