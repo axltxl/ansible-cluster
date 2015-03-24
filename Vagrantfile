@@ -19,7 +19,7 @@ $ansible_verbose  = ""
 # Available vagrant boxes
 $vm_boxes = {
   "ubuntu/trusty64"     => "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box",
-  "centos-6.5-amd64"    => "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box",
+  "centos-6.5-amd64"    => "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box",
   "coreos-stable"       => "http://stable.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json"
 }
 
