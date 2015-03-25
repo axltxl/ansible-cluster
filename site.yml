@@ -1,8 +1,14 @@
 ---
 # This playbook deploys the whole application stack in this site.
 
+- hosts: coreos
+  gather_facts: False
+  sudo: no
+  roles:
+    - coreos-bootstrap
+
 # Apply common configuration to all hosts
-- hosts: all
+- hosts: cluster-nodes
   sudo: yes
   roles:
     - users
@@ -10,13 +16,4 @@
     - sudo
     - ssh_keys
     - essentials
-    - openssh
-
-- hosts: cluster-nodes
-  post_tasks:
-    - shell: echo 'goodbye'
-
-#- hosts: coreos
-#  gather_facts: False
-#  roles:
-#    - defunctzombie.coreos-bootstrap
+    - { role: openssh, when: ansible_lsb.id != 'CoreOS' }

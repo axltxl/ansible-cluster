@@ -6,5 +6,5 @@ sys_groups: []
 sys_users: []
 sys_users_default:
   - ubuntu # Ubuntu Server
-  - core # CoreOS
+#  - core # CoreOS
   - ec2-user # Amazon Linux

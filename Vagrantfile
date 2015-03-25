@@ -54,11 +54,22 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = $vm_box_check_update
 
  # Ansible provider configuration
+  ansible_nodes = []
+  (1..$num_instances).each do |i|
+    ansible_nodes.push("#{INSTANCE_NAME_PREFIX}-%02d" % i)
+  end
+
+  ansible_groups = {
+    "cluster-nodes" => ansible_nodes
+  }
+
+  if $vm_box == "coreos-stable"
+    ansible_groups['coreos'] = ansible_nodes
+  end
+
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = $ansible_playbook
-    ansible.groups = {
-      "cluster-nodes" => [ "#{INSTANCE_NAME_PREFIX}-[%02d:%02d]" % [0,99] ]
-    }
+    ansible.groups = ansible_groups
     ansible.sudo    = true
     ansible.verbose = $ansible_verbose
   end
