@@ -5,6 +5,9 @@
 # This role makes sure the minimum
 # necessary packages are installed
 
+- name: Set /etc/issue.net
+  copy: src=issue.net dest=/etc/issue.net mode=644 owner=root
+
 - name: Set up essential packages (APT)
   apt: pkg={{ item }} state=installed
   with_flattened:
