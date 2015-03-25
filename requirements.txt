@@ -1,2 +1,3 @@
 git+https://github.com/defunctzombie/ansible-coreos-bootstrap.git,master,coreos-bootstrap
 git+https://github.com/weareinteractive/ansible-sudo.git,1.1.0,sudo
+git+https://github.com/sivel/ansible-openssh.git,0.1.4,openssh

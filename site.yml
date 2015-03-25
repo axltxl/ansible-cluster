@@ -6,12 +6,14 @@
   sudo: yes
   vars_files:
     - vars/defaults.yml
+    - vars/sshd_config.yml
   roles:
     - users
     - sysctl
     - sudo
     - ssh_keys
     - essentials
+    - openssh
 
 - hosts: cluster-nodes
   post_tasks:
