@@ -3,17 +3,53 @@
 # options (global ruby variables) which are detailed below. To modify
 # these options, first copy this file to "config.rb". Then simply
 # uncomment the necessary lines, leaving the $, and replace everything
-# after the equals sign..
+# after the equals sign.
+#
 
-# Size of the CoreOS cluster created by Vagrant
+###
+# General options
+###
+
+# If true, a short summary of the configuration options
+# will be shown when executing vagrant
+# Default value is false
+#$show_config = false
+
+###
+# Vagrant-related options and tweaks
+###
+
+# How many VMs should vagrant get up
+# Default is 1
 #$num_instances=1
-
-# Change basename of the VM
-# The default value is "core", which results in VMs named starting with
-# "core-01" through to "core-${num_instances}".
-#$instance_name_prefix="ansible"
 
 # Customize VMs
 #$vm_gui = false
 #$vm_memory = 1024
 #$vm_cpus = 1
+
+# Name of the box tto be spawned by Vagrant
+#$vm_box == "coreos-stable"
+
+# Tell me where your box is
+# Default is ""
+#$vm_box_url = "http://stable.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json"
+
+# Box version, this is not stricty necessary
+# Default is nil
+#$vm_box_version = ">= 308.0.1"
+
+# If true, it will download the latest version of $vm_box
+#$vm_box_check_update = true
+
+###
+# Ansible options
+###
+
+# Ansible playbook file
+# Default is "site.yml"
+#$ansible_playbook = "site.yml"
+
+# Verbosity level
+# Default is ""
+#$ansible_verbose = ""

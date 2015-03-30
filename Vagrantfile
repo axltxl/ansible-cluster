@@ -6,22 +6,18 @@ require 'fileutils'
 
 # Configuration file location
 CONFIG = File.join(File.dirname(__FILE__), "config.rb")
+$show_config = false
 
 # Defaults for config options defined in CONFIG
-$num_instances    = 1
-$vm_gui           = false
-$vm_memory        = 1024
-$vm_cpus          = 1
-$vm_box           = "ubuntu/trusty64"
-$ansible_playbook = "site.yml"
-$ansible_verbose  = ""
+$num_instances       = 1
+$vm_gui              = false
+$vm_memory           = 1024
+$vm_cpus             = 1
+$vm_box_check_update = true
 
-# Available vagrant boxes
-$vm_boxes = {
-  "ubuntu/trusty64"     => "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box",
-  "centos-6.5-amd64"    => "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box",
-  "coreos-stable"       => "http://stable.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json"
-}
+# Defaults for ansible provisioner
+$ansible_playbook    = "site.yml"
+$ansible_verbose     = ""
 
 # This is the prefix used in hostnames
 # for each vagrant boxcarav
@@ -29,29 +25,35 @@ INSTANCE_NAME_PREFIX = "ship"
 
 # Import configuration file (if any)
 if File.exist?(CONFIG)
-  puts "Merging configuration with #{CONFIG}"
+  if $show_config
+    puts "Merging configuration with #{CONFIG}"
+  end
   require CONFIG
 end
 
-puts "Current configuration:"
-puts "----------------------"
-puts "num_instances    = #{$num_instances}"
-puts "vm_gui           = #{$vm_gui}"
-puts "vm_cpus          = #{$vm_cpus}"
-puts "vm_box           = #{$vm_box}"
-puts "ansible_playbook = #{$ansible_playbook}"
-puts "----------------------"
+if $show_config then
+  puts "Current configuration:"
+  puts "----------------------"
+  puts "num_instances    = #{$num_instances}"
+  puts "vm_box           = #{$vm_box}"
+  puts "vm_box_url       = #{$vm_box_url}"
+  puts "vm_gui           = #{$vm_gui}"
+  puts "vm_cpus          = #{$vm_cpus}"
+  puts "vm_memory        = #{$vm_memory}"
+  puts "ansible_playbook = #{$ansible_playbook}"
+  puts "----------------------"
+end
 
 # Now, the real magic begins ...
 Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox"
-  config.vm.box = $vm_box
-  config.vm.box_version = ">= 308.0.1" if $vm_box == "coreos-stable"
-  config.vm.box_url = $vm_boxes["#{$vm_box}"]
-  config.vm.box_check_update = true
+  config.vm.box              = $vm_box
+  config.vm.box_version      = $vm_box_version if $vm_box_version != nil
+  config.vm.box_url          = $vm_box_url
+  config.vm.box_check_update = $vm_box_check_update
 
- #
+ # Ansible provider configuration
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = $ansible_playbook
     ansible.groups = {
