@@ -19,7 +19,7 @@ ansible-galaxy install -r requirements.txt
 ```
 
 ## Vagrant environment configuration
-[coming soon]
+You need to copy `config.rb.sample` to `config.rb` in order to use Vagrant. Read `config.rb.sample` for further instructions.
 
 ## Release The Kraken!
 
