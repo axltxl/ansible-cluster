@@ -1,0 +1,10 @@
+---
+packages_base:
+  - iptraf
+  - tcpdump
+
+packages_ubuntu:
+  - htop
+  - httpie
+
+packages_centos: []

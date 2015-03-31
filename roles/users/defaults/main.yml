@@ -1,7 +1,6 @@
 ---
 # System groups
-sys_groups:
-  - { name: sysadmins }
+sys_groups: []
 
 # System users
 sys_users: []
