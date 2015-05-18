@@ -19,11 +19,11 @@
 # Vagrant-related options and tweaks
 ###
 
-# How many VMs should vagrant get up
+# How many boxes should vagrant get up
 # Default is 1
 #$num_instances=1
 
-# Customize VMs
+# Customize Vagrant boxes
 #$vm_gui = false
 #$vm_memory = 1024
 #$vm_cpus = 1
@@ -53,3 +53,11 @@
 # Verbosity level
 # Default is ""
 #$ansible_verbose = ""
+
+# Which inventory file or directory is ansible going to use?
+#·ansible_inventory = "inventory"
+
+# Paths to ansible executables
+#$ansible_bin          = "ansible"
+#$ansible_playbook_bin = "ansible-playbook"
+#$ansible_galaxy_bin   = "ansible-galaxy"

@@ -12,11 +12,6 @@
     - essentials
     - openssh
 
-- hosts: cluster-nodes
+- hosts: develop
   post_tasks:
     - shell: echo 'goodbye'
-
-#- hosts: coreos
-#  gather_facts: False
-#  roles:
-#    - defunctzombie.coreos-bootstrap
