@@ -3,4 +3,6 @@
 .vagrant
 .pyenv
 config.rb
+!lib/config.rb
 dist
+/.python-version

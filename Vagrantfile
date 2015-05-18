@@ -4,32 +4,18 @@
 # Module imports
 require 'fileutils'
 
-# Configuration file location
-CONFIG = File.join(File.dirname(__FILE__), "config.rb")
-$show_config = false
+# Version control-related variables
+require File.join(File.dirname(__FILE__), "lib/git.rb")
 
-# Defaults for config options defined in CONFIG
-$num_instances       = 1
-$vm_gui              = false
-$vm_memory           = 1024
-$vm_cpus             = 1
-$vm_box_check_update = true
-
-# Defaults for ansible provisioner
-$ansible_playbook    = "site.yml"
-$ansible_verbose     = ""
+# Configuration file
+require File.join(File.dirname(__FILE__), "lib/config.rb")
 
 # This is the prefix used in hostnames
 # for each vagrant boxcarav
 INSTANCE_NAME_PREFIX = "ship"
 
-# Import configuration file (if any)
-if File.exist?(CONFIG)
-  if $show_config
-    puts "Merging configuration with #{CONFIG}"
-  end
-  require CONFIG
-end
+# Whether or not to show current configuration
+$show_config = false
 
 if $show_config then
   puts "Current configuration:"
@@ -53,15 +39,8 @@ Vagrant.configure("2") do |config|
   config.vm.box_url          = $vm_box_url
   config.vm.box_check_update = $vm_box_check_update
 
- # Ansible provider configuration
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = $ansible_playbook
-    ansible.groups = {
-      "cluster-nodes" => [ "#{INSTANCE_NAME_PREFIX}-[%02d:%02d]" % [0,99] ]
-    }
-    ansible.sudo    = true
-    ansible.verbose = $ansible_verbose
-  end
+  # Ansible host group
+  ansible_hosts = []
 
   # We're gonna create a number of machines with the same
   # settings each
@@ -82,5 +61,18 @@ Vagrant.configure("2") do |config|
       ip = "172.17.8.#{i+100}"
       config.vm.network :private_network, ip: ip
     end
+    # Add this host to the ansible inventory
+    ansible_hosts.push(vm_name)
   end
+
+  # Ansible provider configuration
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = $ansible_playbook
+    ansible.groups = {
+      Git::BRANCH => ansible_hosts
+    }
+    ansible.sudo    = true
+    ansible.verbose = $ansible_verbose
+  end
+
 end
