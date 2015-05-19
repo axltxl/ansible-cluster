@@ -7,10 +7,6 @@ require File.join(File.dirname(__FILE__), "lib/git.rb")
 # Configuration file
 require File.join(File.dirname(__FILE__), "lib/config.rb")
 
-if File.exist?(CONFIG)
-  require CONFIG
-end
-
 # git branch as an ansible environment
 # Ansible hosts group to which these rake tasks are going to target to
 ANSIBLE_STAGE=Git::BRANCH
