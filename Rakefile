@@ -29,14 +29,30 @@ def ansible_playbook_vagrant(args="")
   ansible_playbook(VAGRANT_INVENTORY, args)
 end
 
+def ansible_pyvenv_sh(cmd)
+  sh %{#{ANSIBLE_PYVENV_PREFIX}/#{cmd}}
+end
+
+def ansible_pyvenv_install(ansible_pyenv)
+  rm_rf ansible_pyenv
+  mkdir_p ansible_pyenv
+  sh %{virtualenv #{ansible_pyenv}}
+  ansible_pyvenv_sh "pip install ansible==#{ANSIBLE_VERSION}"
+end
+
 ##################################
 # Tasks
 ##################################
 
 desc "Install ansible roles"
-task :install_roles do
+task :install_roles => :install_ansible do
   rm_rf 'dist'
   sh %{#{$ansible_galaxy_bin} install -r requirements.txt}
+end
+
+desc "Install ansible"
+task :install_ansible do
+  ansible_pyvenv_install ANSIBLE_PYVENV
 end
 
 desc "Install all dependencies"
