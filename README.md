@@ -31,13 +31,14 @@ All necessary operations for development/deployments are done through `rake` tas
 
 ### Install third-party dependencies
 
-First of all, you will need to fulfill the requirements of this environment
+First of all, once you have cloned this repo, you need to set up its dependencies
 ```bash
-# Once you have cloned this repo, you need to set up dependencies such as ansible roles, etc.
+# This will install ansible inside a virtualenv + necessary roles
 rake install
 ```
 
-If you only want to install/reinstall ansible roles you can execute `rake install_roles` 
+* If you wish to only install the `ansible` bundle run `rake install_ansible`
+* If you only want to install/reinstall ansible roles you can execute `rake install_roles` 
 
 ### List boxes that are going to be provisioned by ansible
 ```bash
