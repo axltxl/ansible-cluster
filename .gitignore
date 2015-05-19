@@ -6,3 +6,7 @@ config.rb
 !lib/config.rb
 dist
 /.python-version
+.ansible
+roles/README*
+roles/.*
+ssh

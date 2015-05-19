@@ -58,6 +58,7 @@
 #·ansible_inventory = "inventory"
 
 # Paths to ansible executables
+# These default to those located at $ansible_pyvenv/bin
 #$ansible_bin          = "ansible"
 #$ansible_playbook_bin = "ansible-playbook"
 #$ansible_galaxy_bin   = "ansible-galaxy"
