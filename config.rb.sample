@@ -62,3 +62,8 @@
 #$ansible_bin          = "ansible"
 #$ansible_playbook_bin = "ansible-playbook"
 #$ansible_galaxy_bin   = "ansible-galaxy"
+
+# Additional playbook groups in which vagrant boxes
+# can be assigned, this is useful for testing playbooks.
+# Default is empty
+#$ansible_vagrant_groups = []
