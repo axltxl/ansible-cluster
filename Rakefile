@@ -1,15 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Version control-related variables
-require File.join(File.dirname(__FILE__), "lib/git.rb")
-
-# Configuration file
+# Configuration library
 require File.join(File.dirname(__FILE__), "lib/config.rb")
 
-# git branch as an ansible environment
-# Ansible hosts group to which these rake tasks are going to target to
-ANSIBLE_STAGE=Git::BRANCH
+###################################
+# Set EC2_INIT_PATH to ec2.ini which is used by the dynamic
+# inventory located at inventory/ec2.py
+###################################
+ENV['EC2_INI_PATH'] = File.join(File.dirname(__FILE__), "ec2.ini")
 
 ##################################
 # Utility functions
@@ -18,7 +17,7 @@ ANSIBLE_STAGE=Git::BRANCH
 def ansible_playbook(inventory, args="")
   verbosity = $ansible_verbose.empty? ? "" : "-#{$ansible_verbose}"
   sh %{#{$ansible_playbook_bin} #{$ansible_playbook} #{verbosity} } \
-   + %{-i #{inventory} #{args} --limit=#{ANSIBLE_STAGE}}
+   + %{-i #{inventory} #{args} --extra-vars="environment=#{ANSIBLE_STAGE}"}
 end
 
 def ansible_playbook_vagrant(args="")

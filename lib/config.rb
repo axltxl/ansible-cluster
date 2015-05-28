@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # # vi: set ft=ruby :
 
+# Version control-related variables
+require File.join(File.dirname(__FILE__), "git.rb")
+
 # Configuration file location
 CONFIG = File.join(File.dirname(__FILE__), "../config.rb")
 
@@ -12,6 +15,20 @@ ANSIBLE_HOME          = ".ansible"
 ANSIBLE_PYVENV        = "#{ANSIBLE_HOME}/pyvenv"
 ANSIBLE_PYVENV_PREFIX = "#{ANSIBLE_PYVENV}/bin"
 ANSIBLE_VERSION       = "1.9.0.1"
+
+###################################
+# git branch as an ansible environment
+# Ansible hosts group to which these rake tasks are going to target to.
+###################################
+if Git::BRANCH.match(/[a-zA-Z]*\/[a-zA-Z]*/) then
+  branch_info = Git::BRANCH.split("/")
+  # Branches are named following the pattern <app_name>/<stage_env>
+  APP_NAME      = branch_info[0]
+  ANSIBLE_STAGE = branch_info[1]
+else
+  APP_NAME      = "none"
+  ANSIBLE_STAGE = "development"
+end
 
 # Defaults for config options defined in CONFIG
 $num_instances       = 1

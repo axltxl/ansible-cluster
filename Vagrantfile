@@ -4,9 +4,6 @@
 # Module imports
 require 'fileutils'
 
-# Version control-related variables
-require File.join(File.dirname(__FILE__), "lib/git.rb")
-
 # Configuration file
 require File.join(File.dirname(__FILE__), "lib/config.rb")
 
@@ -65,14 +62,23 @@ Vagrant.configure("2") do |config|
     ansible_hosts.push(vm_name)
   end
 
+  ansible_groups = {
+    ANSIBLE_STAGE => ansible_hosts
+  }
+
+  $ansible_vagrant_groups.each do |group|
+    ansible_groups[group] = ansible_hosts
+  end
+
   # Ansible provider configuration
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = $ansible_playbook
-    ansible.groups = {
-      Git::BRANCH => ansible_hosts
+    ansible.groups   = ansible_groups
+    ansible.sudo     = true
+    ansible.verbose  = $ansible_verbose
+    ansible.extra_vars = {
+      environment: ANSIBLE_STAGE
     }
-    ansible.sudo    = true
-    ansible.verbose = $ansible_verbose
   end
 
 end
