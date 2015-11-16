@@ -67,3 +67,6 @@
 # can be assigned, this is useful for testing playbooks.
 # Default is empty
 #$ansible_vagrant_groups = []
+# For varying group assignments you can use the following
+# structure.
+#$ansible_vagrant_groups = [ ["group_name", [0,1,2]] ]

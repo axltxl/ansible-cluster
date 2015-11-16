@@ -67,7 +67,17 @@ Vagrant.configure("2") do |config|
   }
 
   $ansible_vagrant_groups.each do |group|
-    ansible_groups[group] = ansible_hosts
+    if group.kind_of? Array then
+      hosts = []
+      ansible_hosts.each_index do |i|
+        if group[1].include? i then
+          hosts << ansible_hosts[i]
+        end
+      end
+      ansible_groups[group[0]] = hosts
+    else
+      ansible_groups[group] = ansible_hosts
+    end
   end
 
   # Ansible provider configuration
