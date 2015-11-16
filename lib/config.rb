@@ -41,6 +41,9 @@ $vm_box_check_update = true
 $ansible_playbook  = "site.yml"
 $ansible_verbose   = ""
 $ansible_inventory = "inventory"
+$ansible_roles_branch = "master"
+$ansible_vagrant_groups = []
+$ansible_limit = "all"
 
 # ansible binaries
 $ansible_bin          = "#{ANSIBLE_PYVENV_PREFIX}/ansible"
