@@ -1,8 +1,0 @@
----
-# System groups
-sys_groups:
-  - { name: sysadmins }
-
-# Defaults for franklinkim.sudo
-sudo_users:
-  - {name: '%sysadmins', nopasswd: yes}

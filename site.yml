@@ -2,17 +2,7 @@
 # This playbook deploys the whole application stack in this site.
 
 # Apply common configuration to all hosts
-#- hosts: all
-- hosts: "{{ environment }}"
+- hosts: '{{ deployment_env }}'
   sudo: yes
-  roles:
-    - users
-    - sysctl
-    - sudo
-    - ssh_keys
-    - essentials
-    - openssh
-
-- hosts: develop
-  post_tasks:
-    - shell: echo 'goodbye'
+  tasks:
+    - shell: "echo $(hostname)"
