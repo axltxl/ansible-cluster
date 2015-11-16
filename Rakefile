@@ -42,12 +42,7 @@ end
 desc "Install ansible roles"
 task :install_roles => :install_ansible do
   rm_rf 'dist'
-  sh %{#{$ansible_galaxy_bin} install -r requirements.txt}
-end
-
-desc "Install ansible"
-task :install_ansible do
-  ansible_pyvenv_install ANSIBLE_PYVENV
+  sh %{#{$ansible_galaxy_bin} install -r requirements.yml}
 end
 
 desc "Install all dependencies"

@@ -1,3 +1,11 @@
-git+https://github.com/defunctzombie/ansible-coreos-bootstrap.git,master,coreos-bootstrap
-git+https://github.com/weareinteractive/ansible-sudo.git,1.1.0,sudo
-git+https://github.com/sivel/ansible-openssh.git,0.1.4,openssh
+---
+#########################
+# Roles should go in here
+#########################
+#- src: https://github.com/sivel/ansible-openssh.git
+#  version: 0.1.4
+#  name: openssh
+
+#- src: https://github.com/jnv/ansible-role-unattended-upgrades.git
+#  version: v1.1.0
+#  name: unattended-upgrades
