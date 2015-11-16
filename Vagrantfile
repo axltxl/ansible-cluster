@@ -77,7 +77,7 @@ Vagrant.configure("2") do |config|
     ansible.sudo     = true
     ansible.verbose  = $ansible_verbose
     ansible.extra_vars = {
-      environment: ANSIBLE_STAGE
+      deployment_env: ANSIBLE_STAGE
     }
   end
 
